@@ -5,6 +5,6 @@ web_controller:
     resource: ../../src/Controller/Web/
     type: annotation
 rest_controller:
-    resource: ../../src/Controller/API/
+    resource: ../../src/Controller/Api/
     type: annotation
     prefix: /api
