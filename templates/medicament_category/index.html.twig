@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MedicamentCategory index{% endblock %}
+
+{% block body %}
+    <h1>MedicamentCategory index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicament_category in medicament_categories %}
+            <tr>
+                <td>{{ medicament_category.id }}</td>
+                <td>{{ medicament_category.nom }}</td>
+                <td>
+                    <a href="{{ path('medicament_category_show', {'id': medicament_category.id}) }}">show</a>
+                    <a href="{{ path('medicament_category_edit', {'id': medicament_category.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('medicament_category_new') }}">Create new</a>
+{% endblock %}

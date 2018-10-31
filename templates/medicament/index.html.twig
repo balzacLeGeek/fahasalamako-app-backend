@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medicament index{% endblock %}
+
+{% block body %}
+    <h1>Medicament index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reference</th>
+                <th>Nom</th>
+                <th>Indication</th>
+                <th>Posologie</th>
+                <th>ContreIndication</th>
+                <th>DateExpiration</th>
+                <th>Cover</th>
+                <th>Poids</th>
+                <th>Quantite</th>
+                <th>DateAjout</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicament in medicaments %}
+            <tr>
+                <td>{{ medicament.id }}</td>
+                <td>{{ medicament.reference }}</td>
+                <td>{{ medicament.nom }}</td>
+                <td>{{ medicament.indication }}</td>
+                <td>{{ medicament.posologie }}</td>
+                <td>{{ medicament.contreIndication }}</td>
+                <td>{{ medicament.dateExpiration ? medicament.dateExpiration|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ medicament.cover }}</td>
+                <td>{{ medicament.poids }}</td>
+                <td>{{ medicament.quantite }}</td>
+                <td>{{ medicament.dateAjout ? medicament.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('medicament_show', {'id': medicament.id}) }}">show</a>
+                    <a href="{{ path('medicament_edit', {'id': medicament.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('medicament_new') }}">Create new</a>
+{% endblock %}

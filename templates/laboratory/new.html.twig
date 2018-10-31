@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Laboratory{% endblock %}
+
+{% block body %}
+    <h1>Create new Laboratory</h1>
+
+    {{ include('laboratory/_form.html.twig') }}
+
+    <a href="{{ path('laboratory_index') }}">back to list</a>
+{% endblock %}
