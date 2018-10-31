@@ -2,9 +2,9 @@ controllers:
     resource: ../../src/Controller/
     type: annotation
 web_controller:
-    resource: ../../src/Infrastructure/Controller/Web/
+    resource: ../../src/Controller/Web/
     type: annotation
 rest_controller:
-    resource: ../../src/Infrastructure/Controller/Rest/
+    resource: ../../src/Controller/API/
     type: annotation
     prefix: /api

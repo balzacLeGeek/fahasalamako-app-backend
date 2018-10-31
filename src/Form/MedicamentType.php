@@ -3,9 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Medicament;
+use App\Entity\Laboratory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class MedicamentType extends AbstractType
 {
@@ -13,6 +17,7 @@ class MedicamentType extends AbstractType
     {
         $builder
             ->add('reference')
+            ->add('pharmacy')
             ->add('nom')
             ->add('indication')
             ->add('posologie')
@@ -21,10 +26,9 @@ class MedicamentType extends AbstractType
             ->add('cover')
             ->add('poids')
             ->add('quantite')
-            ->add('dateAjout')
+            ->add('prix')
             ->add('category')
-            ->add('pharmacy')
-            ->add('laboratories')
+            ->add('laboratory')
         ;
     }
 

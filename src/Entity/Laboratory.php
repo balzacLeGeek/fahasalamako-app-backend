@@ -44,11 +44,6 @@ class Laboratory
     private $siteweb;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Medicament", inversedBy="laboratories")
-     */
-    private $medicament;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $fax;
@@ -57,6 +52,11 @@ class Laboratory
      * @ORM\Column(type="string", length=25, nullable=true)
      */
     private $BP;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Medicament", mappedBy="laboratory")
+     */
+    private $medicament;
 
     public function __construct()
     {
@@ -133,32 +133,6 @@ class Laboratory
         return $this;
     }
 
-    /**
-     * @return Collection|Medicament[]
-     */
-    public function getMedicament(): Collection
-    {
-        return $this->medicament;
-    }
-
-    public function addMedicament(Medicament $medicament): self
-    {
-        if (!$this->medicament->contains($medicament)) {
-            $this->medicament[] = $medicament;
-        }
-
-        return $this;
-    }
-
-    public function removeMedicament(Medicament $medicament): self
-    {
-        if ($this->medicament->contains($medicament)) {
-            $this->medicament->removeElement($medicament);
-        }
-
-        return $this;
-    }
-
     public function getFax(): ?int
     {
         return $this->fax;
@@ -179,6 +153,37 @@ class Laboratory
     public function setBP(?string $BP): self
     {
         $this->BP = $BP;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Medicament[]
+     */
+    public function getMedicament(): Collection
+    {
+        return $this->medicament;
+    }
+
+    public function addMedicament(Medicament $medicament): self
+    {
+        if (!$this->medicament->contains($medicament)) {
+            $this->medicament[] = $medicament;
+            $medicament->setLaboratory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedicament(Medicament $medicament): self
+    {
+        if ($this->medicament->contains($medicament)) {
+            $this->medicament->removeElement($medicament);
+            // set the owning side to null (unless already changed)
+            if ($medicament->getLaboratory() === $this) {
+                $medicament->setLaboratory(null);
+            }
+        }
 
         return $this;
     }

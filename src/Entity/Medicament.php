@@ -81,14 +81,20 @@ class Medicament
     private $pharmacy;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Laboratory", mappedBy="medicament")
+     * @ORM\Column(type="float")
      */
-    private $laboratories;
+    private $prix;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Laboratory", inversedBy="medicament")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $laboratory;
 
     public function __construct()
     {
         $this->reference = Utility::Reference(8);
-        $this->laboratories = new ArrayCollection();
+        $this->dateAjout = new \DateTime();
     }
 
     public function getId(): ?string
@@ -240,30 +246,26 @@ class Medicament
         return $this;
     }
 
-    /**
-     * @return Collection|Laboratory[]
-     */
-    public function getLaboratories(): Collection
+    public function getPrix(): ?float
     {
-        return $this->laboratories;
+        return $this->prix;
     }
 
-    public function addLaboratory(Laboratory $laboratory): self
+    public function setPrix(float $prix): self
     {
-        if (!$this->laboratories->contains($laboratory)) {
-            $this->laboratories[] = $laboratory;
-            $laboratory->addMedicament($this);
-        }
+        $this->prix = $prix;
 
         return $this;
     }
 
-    public function removeLaboratory(Laboratory $laboratory): self
+    public function getLaboratory(): ?Laboratory
     {
-        if ($this->laboratories->contains($laboratory)) {
-            $this->laboratories->removeElement($laboratory);
-            $laboratory->removeMedicament($this);
-        }
+        return $this->laboratory;
+    }
+
+    public function setLaboratory(?Laboratory $laboratory): self
+    {
+        $this->laboratory = $laboratory;
 
         return $this;
     }

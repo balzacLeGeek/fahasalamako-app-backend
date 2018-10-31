@@ -19,6 +19,7 @@
                 <th>Poids</th>
                 <th>Quantite</th>
                 <th>DateAjout</th>
+                <th>Prix</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                 <td>{{ medicament.poids }}</td>
                 <td>{{ medicament.quantite }}</td>
                 <td>{{ medicament.dateAjout ? medicament.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ medicament.prix }}</td>
                 <td>
                     <a href="{{ path('medicament_show', {'id': medicament.id}) }}">show</a>
                     <a href="{{ path('medicament_edit', {'id': medicament.id}) }}">edit</a>
@@ -43,7 +45,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="13">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
