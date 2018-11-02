@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'action.medicament.title'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="content">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                {{ 'medicament.list.title'|trans }}
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <a href="{{ path('medicament_new') }}" type="button" class="btn btn-info waves-effect pull-right">{{ 'menu.create'|trans }}</a>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{ 'medicament.fields.nom'|trans }}</th>
+                                        <th>{{ 'medicament.fields.infoGenerale'|trans }}</th>
+                                        <th>{{ 'medicament.fields.codeATC'|trans }}</th>
+                                        <th>{{ 'medicament.fields.pathologie'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for medicament in medicaments %}
+                                    <tr>
+                                        <th scope="row">{{ medicament.id }}</th>
+                                        <th>{{ medicament.nom }}</th>
+                                        <th>{{ medicament.infoGenerale }}</th>
+                                        <th>{{ medicament.codeATC }}</th>
+                                        <th>{{ medicament.pathologie }}</th>
+                                        <th>
+                                            <a href="{{ path('medicament_show', {'id': medicament.id}) }}"> {{ 'menu.show'|trans }} </a>
+                                            <a href="{{ path('medicament_edit', {'id': medicament.id}) }}"> {{ 'menu.edit'|trans }} </a>
+                                        </th>
+                                    </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="8">{{ 'action.table.no_record'|trans }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

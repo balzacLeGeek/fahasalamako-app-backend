@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CodeATC{% endblock %}
+
+{% block body %}
+    <h1>CodeATC</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ code_atc.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ code_atc.code }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ code_atc.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('code_atc_index') }}">back to list</a>
+
+    <a href="{{ path('code_atc_edit', {'id': code_atc.id}) }}">edit</a>
+
+    {{ include('code_atc/_delete_form.html.twig') }}
+{% endblock %}

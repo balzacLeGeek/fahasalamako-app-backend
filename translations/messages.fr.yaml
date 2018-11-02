@@ -1,11 +1,161 @@
-home:
-  title: Accueil
+menu:
+  table:
+    actions: Actions
+    no_record: Aucun éléments
+  show: Afficher
+  edit: Editer
+  delete: Supprimer
+  create: Créer
+  add: Ajouter
+  save: Enregistrer
+  back_to: Revenir à la liste
 
-pharmacy:
-  title: Pharmacie
+action:
+  medicament:
+    title: Médicament
+    liste: Liste des Médicaments
+    configuration:
+      title: configuration
+      code_atc: Code ATC
+      pathologie: Pathologie
+      principe_actif: Principe Actif
+      qte_unite: Unité
+      laboratoire: Laboratoire
 
-laboratory:
-  title: Laboratoire
+  home:
+    title: Tableau de bord
+
+  pharmacie:
+    title: Pharmacie
+
+  docteur:
+    title: Docteur
+  
+  code_atc:
+    title: Code ATC
+  
+  pathologie:
+    title: Pathologie
+  
+  principes_actifs:
+    title: Principe actifs
+  
+  laboratoire:
+    title: Laboratoires
+
+docteur:
+  index:
+    title: Docteur
+  new:
+    title: Nouveau Docteur
+  edit:
+    title: Edition d'un Docteur
+  list:
+    title: Liste des Docteurs
+  fields:
+    nom: Nom
+    prenom: Prénom 
+    telephone: Télephone
+    adresse: Adresse
+    latitude: Latitude
+    longitude: Longitude
+    email: Adresse email
+    cabinet: Cabinet
+    specialite: Spécialité
+
+pharmacie:
+  index:
+    title: Pharmacie
+  new:
+    title: Nouvelle Pharmacie
+  edit:
+    title: Edition d'une Pharmacie
+  list:
+    title: Liste des Pharmacies
+  fields:
+    nom: Nom
+    adresse: Adresse
+    telephone: Télephone
+    latitude: Latitude
+    longitude: Longitude
+
+code_atc:
+  index:
+    title: Code ATC
+  new:
+    title: Nouvelle Code ATC
+  edit:
+    title: Edition d'une Code ATC
+  list:
+    title: Liste des Codes ATC
+  fields:
+    code: Code
+    libelle: Libellé
+
+pathologie:
+  index:
+    title: Pathologie 
+  new:
+    title: Nouvelle Pathologie
+  edit:
+    title: Edition d'une Pathologie
+  list:
+    title: Liste des Pathologie
+  fields:
+    nom: Nom
+
+principes_actifs:
+  index:
+    title: Prinicipe actif
+  new:
+    title: Nouveau Prinicipe actif
+  edit:
+    title: Edition d'un Prinicipe actif
+  list:
+    title: Liste des Prinicipes actifs
+  fields:
+    nom: Nom
+
+laboratoire:
+  index:
+    title: Laboratoire
+  new:
+    title: Nouveau Laboratoire
+  edit:
+    title: Edition d'un Laboratoire
+  list:
+    title: Liste des Laboratoires
+  fields:
+    nom: Nom
+    adresse: Adresse
+    bp: Boite postale
+    telephone: Telephone
+    fax: Fax
+    email: Email
+    website: Website
 
 medicament:
-  title: Médicament
+  index:
+    title: Medicament
+  new:
+    title: Nouveau Medicament
+  edit:
+    title: Edition d'un Medicament
+  list:
+    title: Liste des Medicaments
+  fields:
+    nom: Nom
+    infoGenerale: Information Gle
+    kqueQuantite: Poids / Qté
+    kqueUnite: Unité
+    codeATC: Code ATC
+    principesActifs: Principes Actifs
+    expicients: Excipients
+    presentation: Présentation
+    aspectForme: Aspect de la Forme
+    casUtilisation: Ca d'utilisation
+    posologie: Posologie
+    effet: Effet
+    contreIndication: Contre indication
+    pathologie: Pathologie
+    laboratoire: Laboratoire

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New KqueUnite{% endblock %}
+
+{% block body %}
+    <h1>Create new KqueUnite</h1>
+
+    {{ include('kque_unite/_form.html.twig') }}
+
+    <a href="{{ path('kque_unite_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    <div class="form-group">
+        <div class="form-line">
+            {{ form_row(form.nom, {'attr' : {'class':'form-control'}}) }}
+        </div>   
+    </div>
+    <br>
+    <a class="btn btn-info m-t-15 waves-effect" type="button" href="{{ path('pathologie_index') }}">{{ 'menu.back_to'|trans }}</a>
+    <button class="btn btn-primary m-t-15 waves-effect" type="button">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

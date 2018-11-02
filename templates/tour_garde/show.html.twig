@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TourGarde{% endblock %}
+
+{% block body %}
+    <h1>TourGarde</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tour_garde.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ tour_garde.date ? tour_garde.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateAjout</th>
+                <td>{{ tour_garde.dateAjout ? tour_garde.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ tour_garde.active ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tour_garde_index') }}">back to list</a>
+
+    <a href="{{ path('tour_garde_edit', {'id': tour_garde.id}) }}">edit</a>
+
+    {{ include('tour_garde/_delete_form.html.twig') }}
+{% endblock %}

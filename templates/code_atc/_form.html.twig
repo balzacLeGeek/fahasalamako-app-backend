@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+    <div class="form-group">
+        <div class="col-md-6">
+            <div class="form-line">
+                {{ form_row(form.code, {'attr' : {'class':'form-control'}}) }}
+            </div>            
+        </div>
+        <div class="col-md-6">
+            <div class="form-line">
+                {{ form_row(form.libelle, {'attr' : {'class':'form-control'}}) }}
+            </div>            
+        </div>
+    </div>
+    <br>
+    <a class="btn btn-info m-t-15 waves-effect" type="button" href="{{ path('code_atc_index') }}">{{ 'menu.back_to'|trans }}</a>
+    <button class="btn btn-primary m-t-15 waves-effect" type="button">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

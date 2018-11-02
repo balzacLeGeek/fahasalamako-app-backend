@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'action.code_atc.title'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="content">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                {{ 'code_atc.list.title'|trans }}
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <a href="{{ path('code_atc_new') }}" type="button" class="btn btn-info waves-effect pull-right">{{ 'menu.create'|trans }}</a>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{ 'code_atc.fields.code'|trans }}</th>
+                                        <th>{{ 'code_atc.fields.libelle'|trans }}</th>
+                                        <th>{{ 'menu.table.actions'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for code_atc in code_atcs %}
+                                    <tr>
+                                        <th scope="row">{{ code_atc.id }}</th>
+                                        <th>{{ code_atc.code }}</th>
+                                        <th>{{ code_atc.libelle }}</th>
+                                        <th>
+                                            <a href="{{ path('code_atc_show', {'id': code_atc.id}) }}"> {{ 'menu.show'|trans }} </a>
+                                            <a href="{{ path('code_atc_edit', {'id': code_atc.id}) }}"> {{ 'menu.edit'|trans }} </a>
+                                        </th>
+                                    </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="8">{{ 'action.table.no_record'|trans }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

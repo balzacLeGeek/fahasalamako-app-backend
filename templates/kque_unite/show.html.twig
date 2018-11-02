@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KqueUnite{% endblock %}
+
+{% block body %}
+    <h1>KqueUnite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ kque_unite.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ kque_unite.label }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('kque_unite_index') }}">back to list</a>
+
+    <a href="{{ path('kque_unite_edit', {'id': kque_unite.id}) }}">edit</a>
+
+    {{ include('kque_unite/_delete_form.html.twig') }}
+{% endblock %}

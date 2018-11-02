@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'action.docteur.title'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="content">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                {{ 'docteur.list.title'|trans }}
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <a href="{{ path('docteur_new') }}" type="button" class="btn btn-info waves-effect pull-right">{{ 'menu.create'|trans }}</a>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{ 'docteur.fields.nom'|trans }}</th>
+                                        <th>{{ 'docteur.fields.prenom'|trans }}</th>
+                                        <th>{{ 'docteur.fields.cabinet'|trans }}</th>
+                                        <th>{{ 'docteur.fields.adresse'|trans }}</th>
+                                        <th>{{ 'docteur.fields.telephone'|trans }}</th>
+                                        <th>{{ 'docteur.fields.specialite'|trans }}</th>
+                                        <th>{{ 'menu.table.actions'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for docteur in docteurs %}
+                                    <tr>
+                                        <th scope="row">{{ docteur.id }}</th>
+                                        <th>{{ docteur.nom }}</th>
+                                        <th>{{ docteur.prenom }}</th>
+                                        <th>{{ docteur.cabinet }}</th>
+                                        <th>{{ docteur.adresse }}</th>
+                                        <th>{{ docteur.telephone }}</th>
+                                        <th>{{ docteur.specialite }}</th>
+                                        <th>
+                                            <a href="{{ path('docteur_show', {'id': docteur.id}) }}"> {{ 'menu.show'|trans }} </a>
+                                            <a href="{{ path('docteur_edit', {'id': docteur.id}) }}"> {{ 'menu.edit'|trans }} </a>
+                                        </th>
+                                    </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="8">{{ 'action.table.no_record'|trans }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
