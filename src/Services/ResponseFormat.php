@@ -5,7 +5,25 @@
 
     class ResponseFormat
     {
-        static function ListePharmacie($isGarde, Pharmacie $pharmacie)
+        static function ShowDocteur($docteur)
+        {
+            return [
+                "id"     =>  $docteur->getId(),
+                "nom"     =>  $docteur->getNom(),
+                "prenom"     =>  $docteur->getPrenom(),
+                "adresse"     =>  $docteur->getAdresse(),
+                "telephone"     =>  $docteur->getTelephone(),
+                "email"     =>  $docteur->getEmail(),
+                "specialite"     =>  $docteur->getSpecialite()->getNom(),
+                "coodonnees"     =>  [
+                    "latitude"     =>  $docteur->getLatitude(),
+                    "longitude"     =>  $docteur->getLongitude(),
+                ],
+                "cabinet" => $docteur->getCabinet(),
+            ];
+        }
+
+        static function ShowPharmacie($isGarde, Pharmacie $pharmacie)
         {
             return [
                 "id"     =>  $pharmacie->getId(),

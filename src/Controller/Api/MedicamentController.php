@@ -17,9 +17,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MedicamentController extends AbstractController
 {
     /**
+     * @Route("/", name="api_medicament_index", methods="GET")
+     */
+    public function index(ProduitsRepository $produitsRepository, MedicamentRepository $medicamentRepository)
+    {
+        $medicamentListe = [];
+
+        foreach($medicamentRepository->findAll() as $medicament) {
+            $pharmacieListe = $produitsRepository->findBy(['medicament' => $medicament]);
+            $medicamentListe[] = ResponseFormat::ShowMedicament($pharmacieListe, $medicament);
+        }
+
+        return new JsonResponse($medicamentListe);
+    }
+
+    /**
      * @Route("/{id}", name="api_medicament_show", methods="GET")
      */
-    public function index(ProduitsRepository $produitsRepository, MedicamentRepository $medicamentRepository, $id)
+    public function show(ProduitsRepository $produitsRepository, MedicamentRepository $medicamentRepository, $id)
     {
         $medicament = $medicamentRepository->find($id);
         $pharmacieListe = $produitsRepository->findBy(['medicament' => $medicament]);

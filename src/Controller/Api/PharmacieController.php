@@ -29,10 +29,25 @@ class PharmacieController extends AbstractController
             if ($tourGarde != null) {
                 $isGarde = $tourGarde[0]->getActive();
             }
-            $liste[] = ResponseFormat::ListePharmacie($isGarde, $pharmacie);
+            $liste[] = ResponseFormat::ShowPharmacie($isGarde, $pharmacie);
             $isGarde = false;
         }
         
         return new JsonResponse($liste);
+    }
+
+    /**
+     * @Route("/{id}", name="api_pharmacie_show", methods="GET")
+     */
+    public function show(PharmacieRepository $pharmacieRepository, TourGardeRepository $tourGardeRepository, $id)
+    {
+        $isGarde = false;
+        $pharmacie = $pharmacieRepository->find($id);
+        $tourGarde = $tourGardeRepository->findBy(['pharmacie' => $pharmacie]);
+        if ($tourGarde != null) {
+            $isGarde = $tourGarde[0]->getActive();
+        }
+
+        return new JsonResponse(ResponseFormat::ShowPharmacie($isGarde,  $pharmacie));
     }
 }
