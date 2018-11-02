@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TourGarde{% endblock %}
+
+{% block body %}
+    <h1>Create new TourGarde</h1>
+
+    {{ include('tour_garde/_form.html.twig') }}
+
+    <a href="{{ path('tour_garde_index') }}">back to list</a>
+{% endblock %}

@@ -12,48 +12,40 @@
                 <td>{{ medicament.id }}</td>
             </tr>
             <tr>
-                <th>Reference</th>
-                <td>{{ medicament.reference }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ medicament.nom }}</td>
             </tr>
             <tr>
-                <th>Indication</th>
-                <td>{{ medicament.indication }}</td>
+                <th>InfoGenerale</th>
+                <td>{{ medicament.infoGenerale }}</td>
+            </tr>
+            <tr>
+                <th>KqueQuantite</th>
+                <td>{{ medicament.kqueQuantite }}</td>
+            </tr>
+            <tr>
+                <th>Presentation</th>
+                <td>{{ medicament.presentation }}</td>
+            </tr>
+            <tr>
+                <th>AspectForme</th>
+                <td>{{ medicament.aspectForme }}</td>
+            </tr>
+            <tr>
+                <th>CasUtilisation</th>
+                <td>{{ medicament.casUtilisation }}</td>
             </tr>
             <tr>
                 <th>Posologie</th>
-                <td>{{ medicament.posologie }}</td>
+                <td>{{ medicament.Posologie }}</td>
+            </tr>
+            <tr>
+                <th>Effet</th>
+                <td>{{ medicament.effet }}</td>
             </tr>
             <tr>
                 <th>ContreIndication</th>
                 <td>{{ medicament.contreIndication }}</td>
-            </tr>
-            <tr>
-                <th>DateExpiration</th>
-                <td>{{ medicament.dateExpiration ? medicament.dateExpiration|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Cover</th>
-                <td>{{ medicament.cover }}</td>
-            </tr>
-            <tr>
-                <th>Poids</th>
-                <td>{{ medicament.poids }}</td>
-            </tr>
-            <tr>
-                <th>Quantite</th>
-                <td>{{ medicament.quantite }}</td>
-            </tr>
-            <tr>
-                <th>DateAjout</th>
-                <td>{{ medicament.dateAjout ? medicament.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ medicament.prix }}</td>
             </tr>
         </tbody>
     </table>

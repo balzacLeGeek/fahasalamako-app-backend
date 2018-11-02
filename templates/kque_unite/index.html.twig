@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KqueUnite index{% endblock %}
+
+{% block body %}
+    <h1>KqueUnite index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kque_unite in kque_unites %}
+            <tr>
+                <td>{{ kque_unite.id }}</td>
+                <td>{{ kque_unite.label }}</td>
+                <td>
+                    <a href="{{ path('kque_unite_show', {'id': kque_unite.id}) }}">show</a>
+                    <a href="{{ path('kque_unite_edit', {'id': kque_unite.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('kque_unite_new') }}">Create new</a>
+{% endblock %}

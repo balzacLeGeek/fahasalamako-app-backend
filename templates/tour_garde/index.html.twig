@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TourGarde index{% endblock %}
+
+{% block body %}
+    <h1>TourGarde index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>DateAjout</th>
+                <th>Active</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tour_garde in tour_gardes %}
+            <tr>
+                <td>{{ tour_garde.id }}</td>
+                <td>{{ tour_garde.date ? tour_garde.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tour_garde.dateAjout ? tour_garde.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tour_garde.active ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('tour_garde_show', {'id': tour_garde.id}) }}">show</a>
+                    <a href="{{ path('tour_garde_edit', {'id': tour_garde.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tour_garde_new') }}">Create new</a>
+{% endblock %}

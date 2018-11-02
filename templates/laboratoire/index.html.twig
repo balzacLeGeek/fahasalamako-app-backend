@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laboratoire index{% endblock %}
+
+{% block body %}
+    <h1>Laboratoire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>BP</th>
+                <th>Telephone</th>
+                <th>Fax</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for laboratoire in laboratoires %}
+            <tr>
+                <td>{{ laboratoire.id }}</td>
+                <td>{{ laboratoire.nom }}</td>
+                <td>{{ laboratoire.adresse }}</td>
+                <td>{{ laboratoire.bp }}</td>
+                <td>{{ laboratoire.telephone }}</td>
+                <td>{{ laboratoire.fax }}</td>
+                <td>{{ laboratoire.email }}</td>
+                <td>{{ laboratoire.website }}</td>
+                <td>
+                    <a href="{{ path('laboratoire_show', {'id': laboratoire.id}) }}">show</a>
+                    <a href="{{ path('laboratoire_edit', {'id': laboratoire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('laboratoire_new') }}">Create new</a>
+{% endblock %}

@@ -1,56 +1,59 @@
 <?php
     namespace App\Services;
-    use App\Entity\Pharmacy;
+    use App\Entity\Pharmacie;
     use App\Entity\Medicament;
 
     class ResponseFormat
     {
-        static function ListePharmacy(Pharmacy $pharmacy)
+        static function ListePharmacie($isGarde, Pharmacie $pharmacie)
         {
             return [
-                "id"     =>  $pharmacy->getId(),
-                "nom"     =>  $pharmacy->getNom(),
-                "adresse"     =>  $pharmacy->getAdresse(),
-                "telephone"     =>  $pharmacy->getTelephone(),
-                "email"     =>  $pharmacy->getEmail(),
-                "cover"     =>  $pharmacy->getCover(),
+                "id"     =>  $pharmacie->getId(),
+                "nom"     =>  $pharmacie->getNom(),
+                "adresse"     =>  $pharmacie->getAdresse(),
+                "telephone"     =>  $pharmacie->getTelephone(),
                 "coodonnees"     =>  [
-                    "latitude"     =>  $pharmacy->getLatitude(),
-                    "longitude"     =>  $pharmacy->getLongitude(),
-                ]
+                    "latitude"     =>  $pharmacie->getLatitude(),
+                    "longitude"     =>  $pharmacie->getLongitude(),
+                ],
+                "garde" => $isGarde,
             ];
         }
 
         // Medicaments
-        static function ShowMedicament(Medicament $medicament)
-        {            
-            $category = $medicament->getCategory();
-            $laboratory = $medicament->getLaboratory();
-             
+        static function ShowMedicament($pharmacieListe, Medicament $medicament)
+        {
+            $pharmacies = [];
+            foreach ($pharmacieListe as $pharmacie) {
+                $pharmacies[] = [
+                    "id_produit" => $pharmacie->getId(),
+                    "id"     =>  $pharmacie->getPharmacie()->getId(),
+                    "nom"     =>  $pharmacie->getPharmacie()->getNom(),
+                ];
+            }
             return [
-                "phar_id"     =>  $medicament->getPharmacy()->getId(),
                 "id"     =>  $medicament->getId(),
-                "reference"     =>  $medicament->getReference(),
+                "codeATC"     =>  $medicament->getCodeATC()->getCode(),
                 "nom"     =>  $medicament->getNom(),
-                "prix"     =>  $medicament->getPrix(),
-                "info"     =>  [
-                    "indication"     =>  $medicament->getIndication(),
-                    "posologie"     =>  $medicament->getPosologie(),
-                    "contreIndication"     =>  $medicament->getContreIndication(),
+                "prix"     =>  28585,
+                "presentation"  =>  $medicament->getPresentation(),
+                "infoGenerale"  =>  $medicament->getInfoGenerale(),
+                "principesActifs"     =>  $medicament->getPrincipesActifs()->getNom(),
+                "expicients"     =>  $medicament->getExpicients(),
+                "aspectForme"     =>  $medicament->getAspectForme(),
+                "casUtilisation"     =>  $medicament->getCasUtilisation(),
+                "posologie"     =>  $medicament->getPosologie(),
+                "effet"     =>  $medicament->getEffet(),
+                "contreIndication"     =>  $medicament->getContreIndication(),
+                "pathologie"     =>  [
+                    "id"  => $medicament->getPathologie()->getId(),
+                    "nom"  => $medicament->getPathologie()->getNom(),
                 ],
-                "dateExpiration"     =>  $medicament->getDateExpiration(),
-                "cover"     =>  $medicament->getCover(),
-                "poids"     =>  $medicament->getPoids(),
-                "quantite"     =>  $medicament->getQuantite(),
-                "cover"     =>  $medicament->getCover(),
-                "category"     =>  [
-                    "cat_id" => $category->getId(),
-                    "cat_nom" => $category->getNom(),
+                "laboratoire"     =>  [
+                    "id" => $medicament->getLaboratoire()->getId(),
+                    "nom" => $medicament->getLaboratoire()->getNom(),
                 ],
-                "laboratory"     =>  [
-                    "lab_id" => $laboratory->getId(),
-                    "lab_nom" => $laboratory->getNom(),
-                ],
+                "pharmacies" => $pharmacies,
             ];
         }
     }

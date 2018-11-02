@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit KqueUnite{% endblock %}
+
+{% block body %}
+    <h1>Edit KqueUnite</h1>
+
+    {{ include('kque_unite/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('kque_unite_index') }}">back to list</a>
+
+    {{ include('kque_unite/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CodeATC{% endblock %}
+
+{% block body %}
+    <h1>Create new CodeATC</h1>
+
+    {{ include('code_atc/_form.html.twig') }}
+
+    <a href="{{ path('code_a_t_c_index') }}">back to list</a>
+{% endblock %}

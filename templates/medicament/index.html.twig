@@ -9,17 +9,15 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Reference</th>
                 <th>Nom</th>
-                <th>Indication</th>
+                <th>InfoGenerale</th>
+                <th>KqueQuantite</th>
+                <th>Presentation</th>
+                <th>AspectForme</th>
+                <th>CasUtilisation</th>
                 <th>Posologie</th>
+                <th>Effet</th>
                 <th>ContreIndication</th>
-                <th>DateExpiration</th>
-                <th>Cover</th>
-                <th>Poids</th>
-                <th>Quantite</th>
-                <th>DateAjout</th>
-                <th>Prix</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,17 +25,16 @@
         {% for medicament in medicaments %}
             <tr>
                 <td>{{ medicament.id }}</td>
-                <td>{{ medicament.reference }}</td>
                 <td>{{ medicament.nom }}</td>
-                <td>{{ medicament.indication }}</td>
-                <td>{{ medicament.posologie }}</td>
+                <td>{{ medicament.infoGenerale }}</td>
+                <td>{{ medicament.kqueQuantite }}</td>
+                <td>{{ medicament.presentation }}</td>
+                <td>{{ medicament.aspectForme }}</td>
+                <td>{{ medicament.casUtilisation }}</td>
+                <td>{{ medicament.Posologie }}</td>
+                <td>{{ medicament.effet }}</td>
+                <td>{{ medicament.expicients }}</td>
                 <td>{{ medicament.contreIndication }}</td>
-                <td>{{ medicament.dateExpiration ? medicament.dateExpiration|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ medicament.cover }}</td>
-                <td>{{ medicament.poids }}</td>
-                <td>{{ medicament.quantite }}</td>
-                <td>{{ medicament.dateAjout ? medicament.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ medicament.prix }}</td>
                 <td>
                     <a href="{{ path('medicament_show', {'id': medicament.id}) }}">show</a>
                     <a href="{{ path('medicament_edit', {'id': medicament.id}) }}">edit</a>
@@ -45,7 +42,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="13">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

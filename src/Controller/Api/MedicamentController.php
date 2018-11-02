@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Services\ResponseFormat;
+use App\Repository\ProduitsRepository;
 use App\Repository\MedicamentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,8 +19,10 @@ class MedicamentController extends AbstractController
     /**
      * @Route("/{id}", name="api_medicament_show", methods="GET")
      */
-    public function index(MedicamentRepository $medicamentRepository, $id)
+    public function index(ProduitsRepository $produitsRepository, MedicamentRepository $medicamentRepository, $id)
     {
-        return new JsonResponse(ResponseFormat::ShowMedicament($medicamentRepository->find($id)));
+        $medicament = $medicamentRepository->find($id);
+        $pharmacieListe = $produitsRepository->findBy(['medicament' => $medicament]);
+        return new JsonResponse(ResponseFormat::ShowMedicament($pharmacieListe, $medicament));
     }
 }

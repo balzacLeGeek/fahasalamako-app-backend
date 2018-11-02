@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Services\Utility;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MedicamentRepository")
@@ -14,104 +13,109 @@ class Medicament
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(name="id", type="guid")
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
-     */
-    private $reference;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
-    private $indication;
+    private $infoGenerale;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $kqueQuantite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\KqueUnite", inversedBy="medicament")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $kqueUnite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CodeATC", inversedBy="medicament")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $codeATC;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $posologie;
+    private $presentation;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $aspectForme;
 
     /**
      * @ORM\Column(type="text")
+     */
+    private $casUtilisation;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $Posologie;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $effet;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
      */
     private $contreIndication;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateExpiration;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $cover;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $poids;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantite;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateAjout;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\MedicamentCategory", inversedBy="medicaments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\PrincipesActifs", inversedBy="medicament")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $category;
+    private $principesActifs;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pharmacy", inversedBy="medicament")
+     * @ORM\Column(type="text")
      */
-    private $pharmacy;
+    private $expicients;
 
     /**
-     * @ORM\Column(type="float")
-     */
-    private $prix;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Laboratory", inversedBy="medicament")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Laboratoire", inversedBy="medicament")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $laboratory;
+    private $laboratoire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pathologie", inversedBy="medicament")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $pathologie;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Produits", mappedBy="medicament")
+     */
+    private $produits;
 
     public function __construct()
     {
-        $this->reference = Utility::Reference(8);
-        $this->dateAjout = new \DateTime();
+        $this->produits = new ArrayCollection();
     }
 
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getReference(): ?string
+    public function __toString(): string
     {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
-
-        return $this;
+        return $this->nom;
     }
 
     public function getNom(): ?string
@@ -126,26 +130,110 @@ class Medicament
         return $this;
     }
 
-    public function getIndication(): ?string
+    public function getInfoGenerale(): ?string
     {
-        return $this->indication;
+        return $this->infoGenerale;
     }
 
-    public function setIndication(string $indication): self
+    public function setInfoGenerale(string $infoGenerale): self
     {
-        $this->indication = $indication;
+        $this->infoGenerale = $infoGenerale;
+
+        return $this;
+    }
+
+    public function getKqueQuantite(): ?float
+    {
+        return $this->kqueQuantite;
+    }
+
+    public function setKqueQuantite(float $kqueQuantite): self
+    {
+        $this->kqueQuantite = $kqueQuantite;
+
+        return $this;
+    }
+
+    public function getKqueUnite(): ?KqueUnite
+    {
+        return $this->kqueUnite;
+    }
+
+    public function setKqueUnite(?KqueUnite $kqueUnite): self
+    {
+        $this->kqueUnite = $kqueUnite;
+
+        return $this;
+    }
+
+    public function getCodeATC(): ?CodeATC
+    {
+        return $this->codeATC;
+    }
+
+    public function setCodeATC(?CodeATC $codeATC): self
+    {
+        $this->codeATC = $codeATC;
+
+        return $this;
+    }
+
+    public function getPresentation(): ?string
+    {
+        return $this->presentation;
+    }
+
+    public function setPresentation(string $presentation): self
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    public function getAspectForme(): ?string
+    {
+        return $this->aspectForme;
+    }
+
+    public function setAspectForme(string $aspectForme): self
+    {
+        $this->aspectForme = $aspectForme;
+
+        return $this;
+    }
+
+    public function getCasUtilisation(): ?string
+    {
+        return $this->casUtilisation;
+    }
+
+    public function setCasUtilisation(string $casUtilisation): self
+    {
+        $this->casUtilisation = $casUtilisation;
 
         return $this;
     }
 
     public function getPosologie(): ?string
     {
-        return $this->posologie;
+        return $this->Posologie;
     }
 
-    public function setPosologie(string $posologie): self
+    public function setPosologie(string $Posologie): self
     {
-        $this->posologie = $posologie;
+        $this->Posologie = $Posologie;
+
+        return $this;
+    }
+
+    public function getEffet(): ?string
+    {
+        return $this->effet;
+    }
+
+    public function setEffet(?string $effet): self
+    {
+        $this->effet = $effet;
 
         return $this;
     }
@@ -155,117 +243,88 @@ class Medicament
         return $this->contreIndication;
     }
 
-    public function setContreIndication(string $contreIndication): self
+    public function setContreIndication(?string $contreIndication): self
     {
         $this->contreIndication = $contreIndication;
 
         return $this;
     }
 
-    public function getDateExpiration(): ?\DateTimeInterface
+    public function getPrincipesActifs(): ?PrincipesActifs
     {
-        return $this->dateExpiration;
+        return $this->principesActifs;
     }
 
-    public function setDateExpiration(\DateTimeInterface $dateExpiration): self
+    public function setPrincipesActifs(?PrincipesActifs $principesActifs): self
     {
-        $this->dateExpiration = $dateExpiration;
+        $this->principesActifs = $principesActifs;
 
         return $this;
     }
 
-    public function getCover(): ?string
+    public function getExpicients(): ?string
     {
-        return $this->cover;
+        return $this->expicients;
     }
 
-    public function setCover(?string $cover): self
+    public function setExpicients(string $expicients): self
     {
-        $this->cover = $cover;
+        $this->expicients = $expicients;
 
         return $this;
     }
 
-    public function getPoids(): ?float
+    public function getLaboratoire(): ?Laboratoire
     {
-        return $this->poids;
+        return $this->laboratoire;
     }
 
-    public function setPoids(float $poids): self
+    public function setLaboratoire(?Laboratoire $laboratoire): self
     {
-        $this->poids = $poids;
+        $this->laboratoire = $laboratoire;
 
         return $this;
     }
 
-    public function getQuantite(): ?int
+    public function getPathologie(): ?Pathologie
     {
-        return $this->quantite;
+        return $this->pathologie;
     }
 
-    public function setQuantite(int $quantite): self
+    public function setPathologie(?Pathologie $pathologie): self
     {
-        $this->quantite = $quantite;
+        $this->pathologie = $pathologie;
 
         return $this;
     }
 
-    public function getDateAjout(): ?\DateTimeInterface
+    /**
+     * @return Collection|Produits[]
+     */
+    public function getProduits(): Collection
     {
-        return $this->dateAjout;
+        return $this->produits;
     }
 
-    public function setDateAjout(\DateTimeInterface $dateAjout): self
+    public function addProduit(Produits $produit): self
     {
-        $this->dateAjout = $dateAjout;
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+            $produit->setMedicament($this);
+        }
 
         return $this;
     }
 
-    public function getCategory(): ?MedicamentCategory
+    public function removeProduit(Produits $produit): self
     {
-        return $this->category;
-    }
-
-    public function setCategory(?MedicamentCategory $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    public function getPharmacy(): ?Pharmacy
-    {
-        return $this->pharmacy;
-    }
-
-    public function setPharmacy(?Pharmacy $pharmacy): self
-    {
-        $this->pharmacy = $pharmacy;
-
-        return $this;
-    }
-
-    public function getPrix(): ?float
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(float $prix): self
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getLaboratory(): ?Laboratory
-    {
-        return $this->laboratory;
-    }
-
-    public function setLaboratory(?Laboratory $laboratory): self
-    {
-        $this->laboratory = $laboratory;
+        if ($this->produits->contains($produit)) {
+            $this->produits->removeElement($produit);
+            // set the owning side to null (unless already changed)
+            if ($produit->getMedicament() === $this) {
+                $produit->setMedicament(null);
+            }
+        }
 
         return $this;
     }

@@ -6,6 +6,17 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <ul>
+            <li><a href="{{ path('code_a_t_c_index') }}">Code ATC</a></li>
+            <li><a href="{{ path('kque_unite_index') }}">Qté Uté</a></li>
+            <li><a href="{{ path('laboratoire_index') }}">Laboratoire</a></li>
+            <li><a href="{{ path('medicament_index') }}">Médicament</a></li>
+            <li><a href="{{ path('pathologie_index') }}">Pathologie</a></li>
+            <li><a href="{{ path('pharmacie_index') }}">Pharmacie</a></li>
+            <li><a href="{{ path('principes_actifs_index') }}">Principe Actifs</a></li>
+            <li><a href="{{ path('produits_index') }}">Produits</a></li>
+            <li><a href="{{ path('tour_garde_index') }}">Tour de Garde</a></li>
+        </ul>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
