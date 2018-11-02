@@ -37,7 +37,7 @@ class CodeATCController extends AbstractController
             $em->persist($codeATC);
             $em->flush();
 
-            return $this->redirectToRoute('code_atcindex');
+            return $this->redirectToRoute('code_atc_index');
         }
 
         return $this->render('code_atc/new.html.twig', [
@@ -85,6 +85,6 @@ class CodeATCController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute('code_atcindex');
+        return $this->redirectToRoute('code_atc_index');
     }
 }
