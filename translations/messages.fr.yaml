@@ -9,6 +9,7 @@ menu:
   add: Ajouter
   save: Enregistrer
   back_to: Revenir à la liste
+  addedAt: Ajouter le
 
 action:
   medicament:
@@ -42,6 +43,12 @@ action:
   
   laboratoire:
     title: Laboratoires
+  
+  astuces:
+    title: Astuces
+  
+  produit:
+    title: Produit
 
 docteur:
   index:
@@ -159,3 +166,17 @@ medicament:
     contreIndication: Contre indication
     pathologie: Pathologie
     laboratoire: Laboratoire
+
+astuces:
+  index: 
+    title: Astuces
+  new:
+    title: Nouvelle Astuces
+  edit:
+    title: Edition d'un Astuces
+  list:
+    title: Liste des Astuces
+  fields:
+    titre: Titre
+    contenu: Contenu
+    created_at: Ajouté le

@@ -8,6 +8,7 @@ use App\Entity\Docteur;
 use App\Repository\DocteurRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Repository\SpecialiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -35,5 +36,16 @@ class DocteurController extends AbstractController
     public function show(Docteur $docteur)
     {
         return new JsonResponse(ResponseFormat::ShowDocteur($docteur));
+    }
+
+    /**
+     * @Route("/specialite", name="api_docteur_show", methods="GET")
+     */
+    public function specialite(SpecialiteRepository $specialiteRepository)
+    {
+        foreach($specialiteRepository->findAll() as $specialite) {
+            $specialiteListe[] = ResponseFormat::ShowSpecialite($specialite);
+        }
+        return new JsonResponse($specialiteListe);
     }
 }

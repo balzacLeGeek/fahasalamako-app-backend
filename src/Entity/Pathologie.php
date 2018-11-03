@@ -28,9 +28,15 @@ class Pathologie
      */
     private $medicament;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Astuces", mappedBy="pathologie")
+     */
+    private $astuces;
+
     public function __construct()
     {
         $this->medicament = new ArrayCollection();
+        $this->astuces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +86,37 @@ class Pathologie
             // set the owning side to null (unless already changed)
             if ($medicament->getPathologie() === $this) {
                 $medicament->setPathologie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Astuces[]
+     */
+    public function getAstuces(): Collection
+    {
+        return $this->astuces;
+    }
+
+    public function addAstuce(Astuces $astuce): self
+    {
+        if (!$this->astuces->contains($astuce)) {
+            $this->astuces[] = $astuce;
+            $astuce->setPathologie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAstuce(Astuces $astuce): self
+    {
+        if ($this->astuces->contains($astuce)) {
+            $this->astuces->removeElement($astuce);
+            // set the owning side to null (unless already changed)
+            if ($astuce->getPathologie() === $this) {
+                $astuce->setPathologie(null);
             }
         }
 

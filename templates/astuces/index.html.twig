@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'action.astuces.title'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="content">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                {{ 'astuces.list.title'|trans }}
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <a href="{{ path('astuces_new') }}" type="button" class="btn btn-info waves-effect pull-right">{{ 'menu.create'|trans }}</a>
+                            </ul>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{ 'astuces.fields.titre'|trans }}</th>
+                                        <th>{{ 'astuces.fields.contenu'|trans }}</th>
+                                        <th>{{ 'astuces.fields.created_at'|trans }}</th>
+                                        <th>{{ 'menu.table.actions'|trans }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for astuce in astuces %}
+                                    <tr>
+                                        <th scope="row">{{ astuce.id }}</th>
+                                        <th>{{ astuce.titre }}</th>
+                                        <th>{{ astuce.contenu }}</th>
+                                        <th>{{ astuce.createdAt|date("m/d/Y") }}</th>
+                                        <th>
+                                            <a href="{{ path('astuces_show', {'id': astuce.id}) }}"> {{ 'menu.show'|trans }} </a>
+                                            <a href="{{ path('astuces_edit', {'id': astuce.id}) }}"> {{ 'menu.edit'|trans }} </a>
+                                        </th>
+                                    </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="8">{{ 'action.table.no_record'|trans }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

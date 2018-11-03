@@ -23,6 +23,33 @@
             ];
         }
 
+        static function ShowSpecialite($specialite)
+        {
+            return [
+                "id"     =>  $specialite->getId(),
+                "nom"     =>  $specialite->getNom(),
+            ];
+        }
+
+        static function ShowAstuces($astuce)
+        {
+            return [
+                "id"     =>  $astuce->getId(),
+                "titre"     =>  $astuce->getTitre(),
+                "contenu"     =>  $astuce->getContenu(),
+                "imageUrl"     =>  $astuce->getImageUrl(),
+            ];
+        }
+
+        static function pathologieShow($pathologie)
+        {
+            dump($pathologie);
+            return [
+                "id"     =>  $pathologie->getId(),
+                "nom"     =>  $pathologie->getNom(),
+            ];
+        }
+
         static function ShowPharmacie($isGarde, Pharmacie $pharmacie)
         {
             return [

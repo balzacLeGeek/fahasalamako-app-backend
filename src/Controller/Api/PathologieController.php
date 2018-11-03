@@ -13,27 +13,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/medicament")
+ * @Route("/pathologie")
  */
-class MedicamentController extends AbstractController
+class PathologieController extends AbstractController
 {
-    /**
-     * @Route("/", name="api_medicament_index", methods="GET")
-     */
-    public function index(ProduitsRepository $produitsRepository, MedicamentRepository $medicamentRepository)
-    {
-        $medicamentListe = [];
-
-        foreach($medicamentRepository->findAll() as $medicament) {
-            $pharmacieListe = $produitsRepository->findBy(['medicament' => $medicament]);
-            $medicamentListe[] = ResponseFormat::ShowMedicament($pharmacieListe, $medicament);
-        }
-
-        return new JsonResponse($medicamentListe);
-    }
     
     /**
-     * @Route("/pathologie/liste", name="api_pathologie_list", methods="GET")
+     * @Route("/", name="api_pathologie_index", methods="GET")
      */
     public function pathologieShow(PathologieRepository $pathologieRepository)
     {
@@ -47,7 +33,7 @@ class MedicamentController extends AbstractController
     }
 
     /**
-     * @Route("/pathologie/{id_pathologie}", name="api_pathologie_list", methods="GET")
+     * @Route("/{id_pathologie}", name="api_pathologie_list", methods="GET")
      */
     public function showByPathologie(PathologieRepository $pathologieRepository, ProduitsRepository $produitsRepository, MedicamentRepository $medicamentRepository, $id_pathologie)
     {
@@ -60,15 +46,5 @@ class MedicamentController extends AbstractController
         }
 
         return new JsonResponse($pathologieListe);
-    }    
-
-    /**
-     * @Route("/{id}", name="api_medicament_show", methods="GET")
-     */
-    public function show(MedicamentRepository $medicamentRepository, ProduitsRepository $produitsRepository, $id)
-    {
-        $medicament = $medicamentRepository->find($id);
-        $pharmacieListe = $produitsRepository->findBy(['medicament' => $medicament]);
-        return new JsonResponse(ResponseFormat::ShowMedicament($pharmacieListe, $medicament));
-    }    
+    }
 }
